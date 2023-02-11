@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		07FD2B92299831FE000E5088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD2B91299831FE000E5088 /* AppDelegate.swift */; };
 		07FD2B94299831FE000E5088 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD2B93299831FE000E5088 /* SceneDelegate.swift */; };
-		07FD2B96299831FE000E5088 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD2B95299831FE000E5088 /* ViewController.swift */; };
 		07FD2B99299831FE000E5088 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07FD2B97299831FE000E5088 /* Main.storyboard */; };
 		07FD2B9C299831FE000E5088 /* SimpleMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07FD2B9A299831FE000E5088 /* SimpleMemo.xcdatamodeld */; };
 		07FD2B9E299831FF000E5088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07FD2B9D299831FF000E5088 /* Assets.xcassets */; };
 		07FD2BA1299831FF000E5088 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07FD2B9F299831FF000E5088 /* LaunchScreen.storyboard */; };
+		07FD2BAA29983990000E5088 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD2BA929983990000E5088 /* Model.swift */; };
+		07FD2BAC29983AB4000E5088 /* MemoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD2BAB29983AB4000E5088 /* MemoListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		07FD2B8E299831FE000E5088 /* SimpleMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07FD2B91299831FE000E5088 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07FD2B93299831FE000E5088 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		07FD2B95299831FE000E5088 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		07FD2B98299831FE000E5088 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07FD2B9B299831FE000E5088 /* SimpleMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleMemo.xcdatamodel; sourceTree = "<group>"; };
 		07FD2B9D299831FF000E5088 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07FD2BA0299831FF000E5088 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07FD2BA2299831FF000E5088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07FD2BA929983990000E5088 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		07FD2BAB29983AB4000E5088 /* MemoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +60,25 @@
 		07FD2B90299831FE000E5088 /* SimpleMemo */ = {
 			isa = PBXGroup;
 			children = (
+				07FD2BA82998397A000E5088 /* Model */,
 				07FD2B91299831FE000E5088 /* AppDelegate.swift */,
 				07FD2B93299831FE000E5088 /* SceneDelegate.swift */,
-				07FD2B95299831FE000E5088 /* ViewController.swift */,
 				07FD2B97299831FE000E5088 /* Main.storyboard */,
 				07FD2B9D299831FF000E5088 /* Assets.xcassets */,
 				07FD2B9F299831FF000E5088 /* LaunchScreen.storyboard */,
 				07FD2BA2299831FF000E5088 /* Info.plist */,
 				07FD2B9A299831FE000E5088 /* SimpleMemo.xcdatamodeld */,
+				07FD2BAB29983AB4000E5088 /* MemoListTableViewController.swift */,
 			);
 			path = SimpleMemo;
+			sourceTree = "<group>";
+		};
+		07FD2BA82998397A000E5088 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				07FD2BA929983990000E5088 /* Model.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07FD2B96299831FE000E5088 /* ViewController.swift in Sources */,
 				07FD2B92299831FE000E5088 /* AppDelegate.swift in Sources */,
 				07FD2B94299831FE000E5088 /* SceneDelegate.swift in Sources */,
+				07FD2BAC29983AB4000E5088 /* MemoListTableViewController.swift in Sources */,
 				07FD2B9C299831FE000E5088 /* SimpleMemo.xcdatamodeld in Sources */,
+				07FD2BAA29983990000E5088 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
