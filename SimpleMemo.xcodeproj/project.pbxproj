@@ -17,6 +17,7 @@
 		07FD2BAC29983AB4000E5088 /* MemoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD2BAB29983AB4000E5088 /* MemoListTableViewController.swift */; };
 		07FD2BAE2998428A000E5088 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD2BAD2998428A000E5088 /* ComposeViewController.swift */; };
 		07FD2BB029984463000E5088 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD2BAF29984463000E5088 /* Extensions.swift */; };
+		07FD2BB229984A20000E5088 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD2BB129984A20000E5088 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		07FD2BAB29983AB4000E5088 /* MemoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewController.swift; sourceTree = "<group>"; };
 		07FD2BAD2998428A000E5088 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		07FD2BAF29984463000E5088 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		07FD2BB129984A20000E5088 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				07FD2BAB29983AB4000E5088 /* MemoListTableViewController.swift */,
 				07FD2BAD2998428A000E5088 /* ComposeViewController.swift */,
 				07FD2BAF29984463000E5088 /* Extensions.swift */,
+				07FD2BB129984A20000E5088 /* DetailViewController.swift */,
 			);
 			path = SimpleMemo;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				07FD2B9C299831FE000E5088 /* SimpleMemo.xcdatamodeld in Sources */,
 				07FD2BAA29983990000E5088 /* Model.swift in Sources */,
 				07FD2BB029984463000E5088 /* Extensions.swift in Sources */,
+				07FD2BB229984A20000E5088 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

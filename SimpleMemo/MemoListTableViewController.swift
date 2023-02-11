@@ -38,6 +38,19 @@ class MemoListTableViewController: UITableViewController {
         }
 
     }
+    
+    // 세그웨이가 연결된 화면을 생성하고 화면을 전환하기 직전에 호출되는 메서드
+    // segue: 현재 실행중인 세그웨이(source와 destination으로 VC접근 가능)
+    // sender: 여기서는 테이블뷰 셀이므로 타입캐스팅
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 셀로 타입캐스팅 후 바인딩된 셀을 통해 indexPath 가져오기. 가져온 indexPath상수로 몇번째 셀인지 확인
+        if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+            // UIViewController타입인 source를 타입캐스팅
+            if let vc = segue.destination as? DetailViewController {
+                vc.memo = Memo.dummyMemoList[indexPath.row]
+            }
+        }
+    }
 
     // MARK: - Table view data source
 
