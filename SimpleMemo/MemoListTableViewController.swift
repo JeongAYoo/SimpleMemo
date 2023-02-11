@@ -8,6 +8,7 @@
 import UIKit
 
 class MemoListTableViewController: UITableViewController {
+    // MARK: - Properties
     let formatter: DateFormatter = {
         let f = DateFormatter()
         f.dateStyle = .long
@@ -16,14 +17,26 @@ class MemoListTableViewController: UITableViewController {
         return f
     }()
     
+    var token: NSObjectProtocol?
+    
+    // MARK: - Life cycle
+    
+    deinit {
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 옵저버 등록: 한번만 등록하면됨. 오퍼레이션큐: 메인큐. 클로저에서 메인큐에서 실행할 코드 입력
+        // addObserver 함수는 옵저버를 해제할때 사용하는 객체를 리턴해줌 (token)
+        // 뷰가 사라지기 전 or 소멸자에서 해제
+        token = NotificationCenter.default.addObserver(forName: ComposeViewController.newMemoDidInsert, object: nil, queue: OperationQueue.main) { [weak self] noti in
+            self?.tableView.reloadData()
+        }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -75,16 +88,6 @@ class MemoListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     */
 
