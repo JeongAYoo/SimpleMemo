@@ -67,6 +67,13 @@ class DetailViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // 공유하기
+    @IBAction func share(_ sender: Any) {
+        guard let memo = memo?.content else { return }
+        
+        let vc = UIActivityViewController(activityItems: [memo], applicationActivities: nil)
+        present(vc, animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
