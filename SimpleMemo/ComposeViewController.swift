@@ -15,7 +15,21 @@ class ComposeViewController: UIViewController {
     /// 편집 이전의 메모 내용을 저장 (modal로 띄워진 화면에서 수정후 그대로 창을 내렸을때 위해)
     var originalMemoContent: String?
     
+    var willShowToken: NSObjectProtocol?
+    var willHideToken: NSObjectProtocol?
+    
     // MARK: - Life cycle
+    
+    deinit {
+        if let token = willShowToken {
+            NotificationCenter.default.removeObserver(token)
+        }
+        
+        if let token = willHideToken {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,16 +45,58 @@ class ComposeViewController: UIViewController {
         }
         
         memoTextView.delegate = self
+        
+        // 키보드가 올라오기전 전달되는 노티 처리
+        // 키보드가 올라오면 여백 추가
+        willShowToken = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main, using: { [weak self ]noti in
+            // 키보드 높이 만큼 여백 추가
+            guard let strongSelf = self else { return }
+            
+            if let frame = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                // 키보드 높이
+                let height = frame.cgRectValue.height
+                // 텍스트뷰의 여백을 변수에 저장
+                var inset = strongSelf.memoTextView.contentInset
+                // 아래 여백을 키보드 높이로 바꾸기
+                inset.bottom = height
+                // 변경된 inset을 다시 contentInset에 저장(bottom을 제외한 나머지 여백은 그대로 유지됨)
+                strongSelf.memoTextView.contentInset = inset
+                
+                // 텍스트뷰 오른쪽에 표시되는 스크롤바에도 같은 크기의 여백 주기
+                inset = strongSelf.memoTextView.verticalScrollIndicatorInsets
+                inset.bottom = height
+                strongSelf.memoTextView.verticalScrollIndicatorInsets = inset
+            }
+        })
+        
+        // 키보드가 사라질때 여백 제거
+        willHideToken = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: OperationQueue.main, using: { [weak self] noti in
+            guard let strongSelf = self else { return }
+            
+            var inset = strongSelf.memoTextView.contentInset
+            inset.bottom = 0
+            strongSelf.memoTextView.contentInset = inset
+            
+            inset = strongSelf.memoTextView.verticalScrollIndicatorInsets
+            inset.bottom = 0
+            strongSelf.memoTextView.verticalScrollIndicatorInsets = inset
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // 화면이 뜨면 자동으로 텍스트뷰 선택, 키보드 올라오게 하기
+        memoTextView.becomeFirstResponder()
         // 편집화면이 표시되기 직전에 뷰컨이 델리게이트로 설정됨
         navigationController?.presentationController?.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        // 입력 포커스 제거(키보드 사라짐)
+        memoTextView.resignFirstResponder()
         // 편집화면이 사라지기 직전에 델리게이트 해제
         navigationController?.presentationController?.delegate = nil
     }
