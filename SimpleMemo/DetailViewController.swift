@@ -68,11 +68,16 @@ class DetailViewController: UIViewController {
     }
     
     // 공유하기
-    @IBAction func share(_ sender: Any) {
+    @IBAction func share(_ sender: UIBarButtonItem) {
         guard let memo = memo?.content else { return }
         
         let vc = UIActivityViewController(activityItems: [memo], applicationActivities: nil)
         present(vc, animated: true)
+        
+        // 아이패드 대응 popover bar button지정
+        if let pc = vc.popoverPresentationController {
+            pc.barButtonItem = sender
+        }
     }
 }
 
