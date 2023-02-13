@@ -74,7 +74,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ago-ip-E0F">
                                 <rect key="frame" x="0.0" y="761" width="390" height="49"/>
                                 <items>
-                                    <barButtonItem title="Item" id="CXe-fO-cNq"/>
+                                    <barButtonItem systemItem="compose" id="CXe-fO-cNq">
+                                        <connections>
+                                            <segue destination="b2A-g7-Si1" kind="presentation" id="Fpq-nW-sIr"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="c5a-X9-yEo">
@@ -135,6 +139,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="xv1-dc-M6Y"/>
+                    <connections>
+                        <outlet property="memoTableView" destination="c5a-X9-yEo" id="eYp-9Y-hoF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CzC-LI-Ea7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -221,6 +228,9 @@
             <point key="canvasLocation" x="333.84615384615381" y="-579.38388625592415"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fpq-nW-sIr"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

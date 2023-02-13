@@ -9,8 +9,10 @@ import UIKit
 
 class DetailViewController: UIViewController {
     // MARK: - Properties
-    var memo: Memo?     // 이전 화면에서 전달한 데이터 저장
+    @IBOutlet weak var memoTableView: UITableView!
     
+    var memo: Memo?     // 이전 화면에서 전달한 데이터 저장
+
     let formatter: DateFormatter = {
         let f = DateFormatter()
         f.dateStyle = .long
@@ -19,11 +21,29 @@ class DetailViewController: UIViewController {
         return f
     }()
     
+    var token: NSObjectProtocol?
     // MARK: - Life cycle
+    
+    deinit {
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // notification observer 추가
+        token = NotificationCenter.default.addObserver(forName: ComposeViewController.memoDidChange, object: nil, queue: OperationQueue.main, using: { [weak self] noti in
+            self?.memoTableView.reloadData()
+        })
 
-        // Do any additional setup after loading the view.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 네비게이션 컨트롤러를 거쳐서 연결된 첫번째 ComposeVC로 수정할 메모 데이터를 전달
+        if let vc = segue.destination.children.first as? ComposeViewController {
+            vc.editTarget = memo
+        }
     }
 }
 
