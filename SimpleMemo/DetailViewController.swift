@@ -45,6 +45,28 @@ class DetailViewController: UIViewController {
             vc.editTarget = memo
         }
     }
+    
+    // MARK: - Actions
+    @IBAction func deleteMemo(_ sender: Any) {
+        let alert = UIAlertController(title: "삭제 확인", message: "메모를 삭제할까요?", preferredStyle: .alert)
+        
+        // destructive: 빨간색 텍스트로 표시
+        let okAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] action in
+            // 현재 화면에 표시되어있는 메모를 전달 (메모 삭제)
+            DataManager.shared.deleteMemo(self?.memo)
+            // 현재 화면 닫기
+            self?.navigationController?.popViewController(animated: true)
+        }
+        
+        // 어떤 액션을 선택하든지, 경고창은 사라지므로 취소액션에는 핸들러 구현X
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -71,6 +93,4 @@ extension DetailViewController: UITableViewDataSource {
             fatalError()    // crash발생(새로운 코드 추가해야한다고 알리기위해)
         }
     }
-    
-    
 }
